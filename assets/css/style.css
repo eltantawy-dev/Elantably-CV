@@ -165,6 +165,20 @@ body { background: var(--smoky-black); }
   #REUSED STYLE
 \*-----------------------------------*/
 
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
 .sidebar,
 article {
   background: var(--eerie-black-2);
@@ -1122,6 +1136,198 @@ main {
   #CONTACT
 \*-----------------------------------*/
 
+
+
+
+
+.contact {
+  margin-right: 0;
+}
+
+
+
+
+
+
+
+/* ====== Form Base ====== */
+.form {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  background: #1E1E1F;
+  border-radius: 14px;
+  box-sizing: border-box;
+  color: #F8F8F8;
+  font-family: system-ui, sans-serif;
+}
+
+/* ====== Groups ====== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #F8F8F8;
+}
+
+/* ====== Inputs ====== */
+.form-input,
+.form-select,
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(248,248,248,.25);
+  background: #1E1E1F;
+  color: #F8F8F8;
+  font-size: 14px;
+  transition: border .2s, box-shadow .2s;
+}
+
+.form-input::placeholder,
+textarea::placeholder {
+  color: rgba(248,248,248,.5);
+}
+
+.form-input:focus,
+.form-select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #F8F8F8;
+  box-shadow: 0 0 0 2px rgba(248,248,248,.25);
+}
+
+/* ====== Hint ====== */
+.form-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(248,248,248,.6);
+}
+
+/* ====== Radio ====== */
+.radio-group {
+  display: flex;
+  gap: 16px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #F8F8F8;
+}
+
+.radio-label input {
+  display: none;
+}
+
+.radio-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(248,248,248,.6);
+  position: relative;
+}
+
+.radio-label input:checked + .radio-custom {
+  border-color: #F8F8F8;
+}
+
+.radio-label input:checked + .radio-custom::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: #F8F8F8;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ====== Button ====== */
+.form-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #F8F8F8;
+  color: #1E1E1F;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform .15s, box-shadow .15s;
+}
+
+.form-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(248,248,248,.35);
+}
+
+.form-btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+
+.form-message {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: center;
+  display: none;
+  animation: fadeIn .25s ease;
+}
+
+/* نجاح */
+.form-message.success {
+  background: rgba(34,197,94,.15);
+  color: #22c55e;
+  border: 1px solid rgba(34,197,94,.35);
+}
+
+/* خطأ */
+.form-message.error {
+  background: rgba(239,68,68,.15);
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,.35);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+.contact-icon {
+  color: #F8F8F8;
+}
+
+
+
+
+
+
+
+
+
+
 .mapbox {
   position: relative;
   height: 250px;
@@ -1141,9 +1347,13 @@ main {
   filter: grayscale(1) invert(1);
 }
 
-.contact-form { margin-bottom: 10px; }
+.contact-form { 
+  margin-bottom: 10px;
+  margin-top: 35px;
+ }
 
-.form-title { margin-bottom: 20px; }
+
+.form-title { margin-bottom: 5px; }
 
 .input-wrapper {
   display: grid;

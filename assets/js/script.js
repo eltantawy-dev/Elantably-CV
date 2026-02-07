@@ -157,3 +157,106 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+
+
+
+
+const TELEGRAM_BOT_TOKEN = '7893120970:AAECHEM-3pCnTLDKEQraqdbiyTMkbQgAJAE'; // استبدل بـ token بوتك
+const TELEGRAM_CHAT_ID = '8224428617'; // استبدل بـ chat id الخاص بك
+
+// عناصر الصفحة
+const telegramForm = document.getElementById('telegramForm');
+const formMessage = document.getElementById('formMessage');
+
+// تأكد إن الفورم موجود
+if (telegramForm) {
+  telegramForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+
+    // Loading
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+
+    // جمع البيانات
+    const formData = new FormData(this);
+
+    const fullName = formData.get('name');
+    const phone = formData.get('phone');
+    const courseType = formData.get('course_type') || 'غير محدد';
+    const englishLevel = formData.get('english_level');
+    const message = formData.get('message') || 'لا توجد رسالة';
+
+    // نص الرسالة
+    const telegramText = `
+🎓 *New Course Inquiry*
+━━━━━━━━━━━━━━━━
+👤 *Name:* ${fullName}
+📞 *Phone:* ${phone}
+━━━━━━━━━━━━━━━━
+🎯 *Course Type:* ${courseType}
+📊 *English Level:* ${englishLevel}
+━━━━━━━━━━━━━━━━
+💬 *Message:*
+    ${message}
+    ━━━━━━━━━━━━━━━━
+        `.trim();
+
+        try {
+          const response = await fetch(
+            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: telegramText,
+                parse_mode: 'Markdown'
+              })
+            }
+          );
+
+          const result = await response.json();
+
+          if (!result.ok) {
+            throw new Error(result.description || 'Telegram error');
+          }
+
+          // نجاح
+          showMessage('✅ تم إرسال البيانات بنجاح، سيتم التواصل معك قريبًا', 'success');
+          this.reset();
+
+        } catch (error) {
+          console.error('Telegram Error:', error);
+
+          // فشل
+          showMessage('❌ حدثت مشكلة أثناء الإرسال، حاول مرة أخرى', 'error');
+
+        } finally {
+          // رجوع الزر
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // ===== دالة إظهار الرسائل =====
+    function showMessage(text, type) {
+      if (!formMessage) return;
+
+      formMessage.textContent = text;
+      formMessage.className = `form-message ${type}`;
+      formMessage.style.display = 'block';
+
+      // منع تداخل التايمرات
+      clearTimeout(window._formMessageTimer);
+
+      window._formMessageTimer = setTimeout(() => {
+        formMessage.style.display = 'none';
+      }, 5000);
+    }
