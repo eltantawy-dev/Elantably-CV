@@ -1842,7 +1842,6 @@ textarea.form-input::-webkit-resizer { display: none; }
    * CONTACT
    */
 
-  .input-wrapper { grid-template-columns: 1fr 1fr; }
 
   .form-btn {
     width: max-content;
