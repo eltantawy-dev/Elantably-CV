@@ -162,7 +162,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 
 
-const TELEGRAM_BOT_TOKEN = '7893120970:AAECHEM-3pCnTLDKEQraqdbiyTMkbQgAJAE'; // استبدل بـ token بوتك
+const TELEGRAM_BOT_TOKEN = '8425114205:AAGIMk-xGis2hqL1WNEAkqTexchnV8UZCSo'; // استبدل بـ token بوتك
 const TELEGRAM_CHAT_ID = '8224428617'; // استبدل بـ chat id الخاص بك
 
 // عناصر الصفحة
